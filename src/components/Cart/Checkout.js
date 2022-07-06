@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 
-import classes from './Checkout.modlue.css'
+import classes from './Checkout.module.css'
 
 const isEmpty = value => value.trim() === '';
 const isFiveChars = value => value.trim().length == 5;
@@ -43,12 +43,16 @@ const Checkout = (props) => {
 			enteredCityIsValid &&
 			enteredPostalCodeIsValid;
 
-
 		if (formIsValid) {
 			return;
 		}
 
-		//Submit cart data
+		props.onConfirm({
+			name: enteredName,
+			street: enteredStreet,
+			city: enteredCity,
+			postalCode: enteredPostalCode,
+		})
 	};
 
 	const nameControlClasses = `${classes.control} ${formInputsValidity.name ? '' : classes.invalid //css@ het xndir ka kpat chi jisht devov !!
